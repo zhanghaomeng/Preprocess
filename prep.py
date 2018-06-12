@@ -45,16 +45,14 @@ def main(args):
 			if file.endswith((".mgz", ".nii", ".nii.gz")):
 				image_files.append(file)
 
-		mask_files = []
-		for file in os.listdir(mask_folder):
-			if file.endswith((".mgz", ".nii", ".nii.gz")):
-				mask_files.append(file)
-
 
 		for file in image_files:
 			image_path = os.path.join(image_folder, file)
 			mask_path = os.path.join(mask_folder, file)
 
+
+			if not os.path.isfile(mask_path):
+				break
 			image_file = utils.read_file(image_path)
 			mask_file = utils.read_file(mask_path)
 
